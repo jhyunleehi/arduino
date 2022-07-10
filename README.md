@@ -144,13 +144,13 @@ ATMEL사가 개발한 AVR은 현재 8비트 AVR과 32비트 AVR을 제공하고 
 
 
 
-## [DIY 메카솔루션 오픈 랩](https://blog.naver.com/roboholic84)
+### [DIY 메카솔루션 오픈 랩](https://blog.naver.com/roboholic84)
 
 
 
-### 환경 설치
+#### 환경 설치
 
-#### Arduino 설치
+##### Arduino 설치
 
 https://www.arduino.cc/
 
@@ -159,7 +159,7 @@ https://www.arduino.cc/
 
 
 
-#### 온거리 센서 보드
+##### 온거리 센서 보드
 
 NANO 33 BLE Sense의 APDS9960센서는 센서에서 적외선을 출력하여 반사되어 돌아오는 빛을 이용해 거리를 측정할 수 있습니다. 이때 센서에서 적외선이 출력되기 때문에 센서를 바라보지 않는 것이 좋습니다. 환경에 따라 다르겠지만, 대략 65 ~ 200mm에서 측정이 되었습니다.
 
@@ -187,7 +187,7 @@ void loop() {
 
 
 
-#### push button
+##### push button
 
 
 
@@ -230,6 +230,30 @@ void loop() {
 * [PWM](https://m.blog.naver.com/emperonics/221725399383)
 * [아두이노 모션 만들기](https://blog.naver.com/emperonics/221699682773)
 * [아두이노 서보 제어](https://blog.naver.com/emperonics/221699682773)
+
+
+
+### App 만들기
+
+#### 1. 네이티브 앱
+
+1. 안드로이드 앱: JAVA, Kotline 언어로 Android Studio를 이용해서 제작
+2. 아이폰 앱: Object-C, Swift 언어로 Xcode를 이용하여 제작
+
+#### 2. 하이브리드 앱
+
+1. React-Native: Javascript 언어로 Android, iOS 동시에 제작
+2. Flutter : Dart 언어로 Android, iOS 동시 제작
+
+#### 3. 웹뷰 앱
+
+1. 웹 URL을 네이티브 하이브리드 툴로 제작한 앱에 삽입
+
+#### 4. 기타
+
+1. MIT App Invenrot(교육용)
+2. Unity (게임)
+3. 스윙투 앱 (Drap&Drop)
 
 
 
