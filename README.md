@@ -248,7 +248,17 @@ void loop() {
 
 
 
+#### 앱 (Webview)
 
+webview를 이용해서 빠르게 app 생성하고 배포하는 방법
+
+[webview](https://www.youtube.com/watch?v=8eIQNfPbRms)
+
+
+
+#### 코틀린
+
+[안드로이드 어플 만들기 후기](https://dev-nasus.tistory.com/59?category=991151)
 
 
 
@@ -268,7 +278,8 @@ void loop() {
 #### 전력 문제
 
 * [Arduidno 저전력 상태](https://fishpoint.tistory.com/5656)
-* 
+
+  
 
 
 
