@@ -24,7 +24,19 @@ AVR 기반의 마이크로컨트롤러 Wiring에서 파생한 프로젝트다.
 
 임베디드 개발 경험이 전혀 없는 사람을 위해 개발된 교육용 플랫폼이기 때문에 프로그램을 작성하고 보드에 프로그램을 올리는 과정을 단순화하여 다루기 쉽게 되어 있다.
 
+##### 종류
 
+1. arduino Uno : 14개 디지털 입출력, 6개 아나로그, USB, 파워젝
+2. Arduino Nao
+3. Arduino Lilypad
+4. Arduino Mega 2560 : 54개 디지털 핀, 16개 아나로그, usb, power, reset
+
+##### 특징
+
+1. USB 연결
+2. 32KB 메모리, SRAM 2K, EEPROM 1K (Mega 2560 버젼은 256KB)
+3. 16Mhz
+4. 통신:  12C 및 SPI 통신
 
 
 
@@ -76,4 +88,148 @@ ATMEL사가 개발한 AVR은 현재 8비트 AVR과 32비트 AVR을 제공하고 
 
 
 ### [ARDUINO 개념](https://yozm.wishket.com/magazine/detail/234/)
+
+
+
+##### 출력장치
+
+* DC 모터
+* 스테퍼 모터
+* 서보 모터
+* 솔레이노이드
+* LCD 디스플레이
+* LEF 표시등
+* 스피커
+
+##### Arduino UNO 보드
+
+
+
+##### Arduino 소프트웨어 IDE
+
+* 아두이노 코드는 스케치라고 부름
+* C 계역 언어
+* 자체 라이브러리
+
+
+
+##### 인기 있는 이유
+
+1. 마이크로 컨트롤러를 사용하기 쉽게 만들어 졌다.
+2. 단순한 USB 케이블로 연결
+3. 다른 부품들과 쉽게 연결
+4. 외부 전원 연결 잭 (건전지 가능)
+
+
+
+
+
+#### [Arduino Libraries](https://www.arduino.cc/reference/en/libraries/)
+
+* [Libraries](https://www.arduino.cc/reference/en/libraries/) 
+* IOT Cloud [API](https://www.arduino.cc/reference/en/iot/api/)
+
+
+
+
+
+### 무선통신
+
+#### nRF24L01
+
+* [무선통신으로 조이스틱-서보모터제어](https://rasino.tistory.com/258?category=1038094)
+* [nRF24L01 RF무선통신](https://rasino.tistory.com/255?category=1038094) : 100m 공간, 안테나 800m 송수신 가능
+
+
+
+
+
+## [DIY 메카솔루션 오픈 랩](https://blog.naver.com/roboholic84)
+
+
+
+### 환경 설치
+
+#### Arduino 설치
+
+https://www.arduino.cc/
+
+* [IDE 스케치 설치](https://blog.naver.com/PostView.naver?blogId=roboholic84&logNo=222662992879&categoryNo=30&parentCategoryNo=&from=thumbnailList)
+* 
+
+
+
+#### 온거리 센서 보드
+
+NANO 33 BLE Sense의 APDS9960센서는 센서에서 적외선을 출력하여 반사되어 돌아오는 빛을 이용해 거리를 측정할 수 있습니다. 이때 센서에서 적외선이 출력되기 때문에 센서를 바라보지 않는 것이 좋습니다. 환경에 따라 다르겠지만, 대략 65 ~ 200mm에서 측정이 되었습니다.
+
+```c
+#include <Arduino_APDS9960.h>
+void setup() {
+  Serial.begin(9600);
+  while (!Serial); // 시리얼 모니터가 켜졌을때만 작동합니다.
+  if (!APDS.begin()) { // 센서 초기화가 실패하면 오류를 발생시킵니다.
+    Serial.println("APDS9960센서 오류!");
+    while (1);
+  }
+}
+void loop() {
+  if (APDS.proximityAvailable()) { // 센서의 값이 읽혔을 때 작동합니다.
+    // - 0   => close
+    // - 255 => far
+    // - -1  => 오류
+    int proximity = APDS.readProximity(); // 센서의 값을 변수에 저장합니다.
+    Serial.println(proximity);
+  }
+  delay(100);
+}
+```
+
+
+
+#### push button
+
+
+
+```c
+void setup() {
+  pinMode(13,OUTPUT);
+  pinMode(2,INPUT);
+}
+
+void loop() {
+  int val = digitalRead(2);
+  if(val ==  HIGH ) // 표시되어 있는 if문의 HIGH를 LOW만 바꿔도 풀업/풀다운이 변경 가능합니다.
+    digitalWrite(13,HIGH);
+  else
+    digitalWrite(13,LOW);
+  delay(1);
+}
+```
+
+
+
+### 자동차
+
+#### 4WD 
+
+* [4WD](https://blog.naver.com/PostView.naver?blogId=roboholic84&logNo=220986481120&categoryNo=30&parentCategoryNo=&from=thumbnailList)
+
+* [aliexpress](https://ko.aliexpress.com/item/1005001854590552.html?spm=a2g0o.detail.100009.3.f4952ce5CJl7Q6&gps-id=pcDetailLeftTopSell&scm=1007.13482.271138.0&scm_id=1007.13482.271138.0&scm-url=1007.13482.271138.0&pvid=f9ce3011-d06f-4f77-9821-614ec6413d95&_t=gps-id%3ApcDetailLeftTopSell%2Cscm-url%3A1007.13482.271138.0%2Cpvid%3Af9ce3011-d06f-4f77-9821-614ec6413d95%2Ctpp_buckets%3A668%232846%238107%231934&pdp_ext_f=%7B%22sku_id%22%3A%2212000027653092910%22%2C%22sceneId%22%3A%223482%22%7D&pdp_npi=2%40dis%21KRW%21%2165557.0%21%21%21%21%21%40210323b516574531144281393e94e4%2112000027653092910%21rec&gatewayAdapt=glo2kor)
+
+
+
+
+
+
+
+#### 서버 모터 
+
+##### PWM을 이용한 서버 모터 제어
+
+* [PWM](https://m.blog.naver.com/emperonics/221725399383)
+* [아두이노 모션 만들기](https://blog.naver.com/emperonics/221699682773)
+* [아두이노 서보 제어](https://blog.naver.com/emperonics/221699682773)
+
+
 
